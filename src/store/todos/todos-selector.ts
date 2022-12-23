@@ -15,5 +15,3 @@ export const selectFilterTodos = (state: Array<ITodo>, filter: string) => {
 			return state;
 	}
 }
-// Нужно связать редюсеры, чтобы отображались актуальные данные
-// и правильно выводить тудус

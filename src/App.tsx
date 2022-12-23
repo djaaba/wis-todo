@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 
 import { Button } from "./components";
 import { getId } from "./utils";
@@ -12,7 +10,6 @@ import {
   selectAllTodos,
   selectFilterTodos,
 } from "./store/todos/todos-selector";
-import { ITasks } from "./interfaces";
 import { toggleTodo } from "./store/todos/todos-actions";
 
 const H1 = styled.h1`
@@ -23,7 +20,7 @@ const H1 = styled.h1`
 `;
 
 const Container = styled.div`
-  border-radius: 5px;
+  border-radius: 8px;
   overflow: hidden;
 `;
 
@@ -35,63 +32,73 @@ const Wrapper = styled.div`
 
 const TaskList = styled.ul`
   width: 100%;
+  color: var(--blue);
 `;
 
 const Task = styled.li`
   background: var(--light-gray);
   margin: 20px 0;
   padding: 20px;
+  display: flex;
+  column-gap: 20px;
+  cursor: pointer;
 `;
 
 export const App = (...props: any) => {
-  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
+  const filter = useSelector(selectFilter);
   const todos = useSelector(selectAllTodos);
-
   const selectTodos = useSelector((state) => selectFilterTodos(todos, filter));
-
-  // let tasks: ITasks = [];
-  // let isLoading = true;
-
-  useEffect(() => {
-    console.log(selectTodos);
-    // axios
-    //   .get(`https://jsonplaceholder.typicode.com/todos`)
-    //   .then((response) => (tasks = response.data))
-    //   .catch((error) => {
-    //     tasks = [];
-    //     console.log(error);
-    //   })
-    //   .finally(() => {
-    //     isLoading = false;
-    //   });
-  }, [filter]);
 
   return (
     <>
       <Wrapper>
-        <H1>Tasks List: {filter}</H1>
+        <H1>Tasks List</H1>
         <Container>
-          <Button onClick={() => dispatch(setFilter({ filter: "all" }))}>
+          <Button
+            style={{
+              background: filter === "all" ? "var(--blue)" : "",
+              color: filter === "all" ? "var(--white)" : "",
+            }}
+            onClick={() => dispatch(setFilter({ filter: "all" }))}
+          >
             All
           </Button>
-          <Button onClick={() => dispatch(setFilter({ filter: "active" }))}>
+          <Button
+            style={{
+              background: filter === "active" ? "var(--blue)" : "",
+              color: filter === "active" ? "var(--white)" : "",
+            }}
+            onClick={() => dispatch(setFilter({ filter: "active" }))}
+          >
             Active
           </Button>
-          <Button onClick={() => dispatch(setFilter({ filter: "completed" }))}>
+          <Button
+            style={{
+              background: filter === "completed" ? "var(--blue)" : "",
+              color: filter === "completed" ? "var(--white)" : "",
+            }}
+            onClick={() => dispatch(setFilter({ filter: "completed" }))}
+          >
             Completed
           </Button>
         </Container>
         <TaskList>
           {selectTodos.map((el) => (
-            <Task key={getId()}>
+            <Task key={getId()} style={{ opacity: el.completed ? "0.5" : "1" }}>
               <input
                 type="checkbox"
                 checked={el.completed}
                 onChange={() => dispatch(toggleTodo(el))}
               />
-              <p>{el.title}</p>
+              <p
+                style={{
+                  textDecoration: el.completed ? "line-through" : "none",
+                }}
+              >
+                {el.title}
+              </p>
             </Task>
           ))}
         </TaskList>
