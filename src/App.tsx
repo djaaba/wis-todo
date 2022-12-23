@@ -1,9 +1,19 @@
-import {observer} from 'mobx-react-lite';
-import styled from 'styled-components';
+import styled from "styled-components";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
-import { Button } from './components';
-import taskStore from './store/store';
-import { getId } from './utils';
+import { Button } from "./components";
+import { getId } from "./utils";
+
+import { setFilter } from "./store/filter/filter-actions";
+import { selectFilter } from "./store/filter/filter-selector";
+import {
+  selectAllTodos,
+  selectFilterTodos,
+} from "./store/todos/todos-selector";
+import { ITasks } from "./interfaces";
+import { toggleTodo } from "./store/todos/todos-actions";
 
 const H1 = styled.h1`
   font-weight: bold;
@@ -33,31 +43,59 @@ const Task = styled.li`
   padding: 20px;
 `;
 
-const App = (...props: any) => {
+export const App = (...props: any) => {
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
+
+  const todos = useSelector(selectAllTodos);
+
+  const selectTodos = useSelector((state) => selectFilterTodos(todos, filter));
+
+  // let tasks: ITasks = [];
+  // let isLoading = true;
+
+  useEffect(() => {
+    console.log(selectTodos);
+    // axios
+    //   .get(`https://jsonplaceholder.typicode.com/todos`)
+    //   .then((response) => (tasks = response.data))
+    //   .catch((error) => {
+    //     tasks = [];
+    //     console.log(error);
+    //   })
+    //   .finally(() => {
+    //     isLoading = false;
+    //   });
+  }, [filter]);
 
   return (
     <>
       <Wrapper>
-        <H1>Tasks List</H1>
+        <H1>Tasks List: {filter}</H1>
         <Container>
-          <Button onClick={() => (taskStore.selectedTab = 'all')}>All</Button>
-          <Button onClick={() => (taskStore.selectedTab = 'opened')}>Opened</Button>
-          <Button onClick={() => (taskStore.selectedTab = 'closed')}>Closed</Button>
+          <Button onClick={() => dispatch(setFilter({ filter: "all" }))}>
+            All
+          </Button>
+          <Button onClick={() => dispatch(setFilter({ filter: "active" }))}>
+            Active
+          </Button>
+          <Button onClick={() => dispatch(setFilter({ filter: "completed" }))}>
+            Completed
+          </Button>
         </Container>
-          <TaskList>
-          { 
-            taskStore.sortedTasks.map(el => 
+        <TaskList>
+          {selectTodos.map((el) => (
             <Task key={getId()}>
-              {/* <input type="checkbox" checked={el.completed} /> */}
-              <p>
-                {el.title}
-              </p>
-            </Task>)
-          }
-          </TaskList>
+              <input
+                type="checkbox"
+                checked={el.completed}
+                onChange={() => dispatch(toggleTodo(el))}
+              />
+              <p>{el.title}</p>
+            </Task>
+          ))}
+        </TaskList>
       </Wrapper>
     </>
   );
 };
-
-export const AppHOC = observer(App);

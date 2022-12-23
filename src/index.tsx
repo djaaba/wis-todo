@@ -3,8 +3,10 @@ import ReactDOM from "react-dom/client";
 import { normalize } from "styled-normalize";
 import { createGlobalStyle } from "styled-components";
 import "@fontsource/source-sans-pro";
+import { Provider } from "react-redux";
+import { rootStore } from "./store/rootStore";
 
-import { AppHOC } from "./App";
+import { App } from "./App";
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -92,6 +94,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <AppHOC />
+    <Provider store={rootStore}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
