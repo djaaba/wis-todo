@@ -1,6 +1,6 @@
 # To-Do List – список дел для организации работы и жизни
 
-Тестовое задание - создание веб-приложения с использованием React, Typescript, Redux
+Тестовое задание - создание веб-приложения Todo-List с использованием React, Typescript, Redux
 
 **Цели:**
 
@@ -46,6 +46,7 @@
 
 https://rahuulmiishra.medium.com/react-worst-practices-bdf924efe470
 https://betterprogramming.pub/8-basic-and-advanced-react-router-tips-6993ece8f57a
+
 ### Структура проекта
 
 ```
@@ -54,11 +55,14 @@ https://betterprogramming.pub/8-basic-and-advanced-react-router-tips-6993ece8f57
 │   ├── components/                  # Папка с используемыми элементами
 │   │   ├── ...                      # UI-kit для приложения
 │   │   └── index.ts                 # Файл экспорта всех компонентов UI-kit
-│   ├── store/                       # Папка с состоянием
-│   ├── interfaces/                  # Папка с интерфейсами
-│   ├── utils/                       # Папка с утилитами
-│   ├── App.tsx                      # Главный компонент
-│   ├── index.tsx                    # Корневой компонент
+│   ├── interfaces/                  # Папка с интерфейсами приложения
+│   │   ├── Main/                    # Главная страница приложения
+│   │   └── TodoItem/                # Страница одного элемента списка дел
+│   ├── pages/                       # Папка со страницами приложения
+│   ├── store/                       # Папка с состоянием приложения
+│   ├── utils/                       # Папка с утилитами приложения
+│   ├── App.tsx                      # Главный компонент приложения
+│   ├── index.tsx                    # Корневой компонент приложения
 │   └── react-app-env.d.ts           # Файл добавляющий поддержку импортов
 ├── .gitignore                       # Список исключённых файлов из Git
 ├── package.json                     # Список модулей и прочей информации
