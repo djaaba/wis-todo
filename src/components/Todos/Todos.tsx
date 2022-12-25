@@ -10,6 +10,7 @@ import {
   selectAllTodos,
   selectFilterTodos,
 } from "../../store/todos/todos-selector";
+import { getId } from "../../utils";
 
 const TodoList = styled.ul`
   width: 100%;
@@ -42,7 +43,7 @@ export const Todos: React.FC<TodosProps> = () => {
   return (
     <TodoList>
       {selectTodos.map((el) => (
-        <Link key={el.id} to={`/${el.id}`}>
+        <Link key={getId()} to={`/${el.id}`}>
           <Todo style={{ opacity: el.completed ? "0.5" : "1" }}>
             <input
               type="checkbox"

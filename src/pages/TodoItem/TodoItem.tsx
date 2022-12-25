@@ -10,6 +10,7 @@ import {
   selectSingleTodo,
 } from "../../store/todos/todos-selector";
 
+
 export const TodoItem: React.FC<TodoItemProps> = () => {
   const query: number = getQuery();
 
@@ -18,7 +19,7 @@ export const TodoItem: React.FC<TodoItemProps> = () => {
   const todo = useSelector(() => selectSingleTodo(todos, query));
 
   const {id, title, completed} = todo;
-  
+
   return (
     <Container>
       <Padding>

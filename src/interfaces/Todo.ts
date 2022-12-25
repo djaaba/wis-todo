@@ -6,6 +6,6 @@ export interface ITodo {
 }
 
 export type TodoAction = {
-	type: "TOGGLE_TODO" | "REMOVE_TODO"
+	type: "TOGGLE_TODO" | "REMOVE_TODO" | "ADD_TODO"
 	body: ITodo
 }
