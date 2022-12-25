@@ -5,7 +5,6 @@ import { ButtonProps } from "./Button.props";
 
 const Btn = styled.button`
   color: var(--black);
-  border: 1px solid var(--dark-gray);
   padding: 5px 15px;
 
   &:hover {

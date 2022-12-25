@@ -9,6 +9,7 @@ import { setFilter } from "../../store/filter/filter-actions";
 
 const Container = styled.div`
   border-radius: 8px;
+  border: 1px solid var(--dark-gray);
   overflow: hidden;
 `;
 
@@ -31,6 +32,8 @@ export const Nav: React.FC<NavProps> = () => {
         style={{
           background: filter === "active" ? "var(--blue)" : "",
           color: filter === "active" ? "var(--white)" : "",
+          borderLeft: "1px solid var(--dark-gray)",
+          borderRight: "1px solid var(--dark-gray)",
         }}
         onClick={() => dispatch(setFilter({ filter: "active" }))}
       >

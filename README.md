@@ -45,7 +45,7 @@
 ## Изученный статьи
 
 https://rahuulmiishra.medium.com/react-worst-practices-bdf924efe470
-
+https://betterprogramming.pub/8-basic-and-advanced-react-router-tips-6993ece8f57a
 ### Структура проекта
 
 ```

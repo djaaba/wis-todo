@@ -15,3 +15,5 @@ export const selectFilterTodos = (state: Array<ITodo>, filter: string) => {
 			return state;
 	}
 }
+
+export const selectSingleTodo = (state: any, id:number) => state.find((todo: any) => todo.id === id)

@@ -4,6 +4,8 @@ import { normalize } from "styled-normalize";
 import { createGlobalStyle } from "styled-components";
 import "@fontsource/source-sans-pro";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+
 import { rootStore } from "./store/rootStore";
 
 import { App } from "./App";
@@ -39,7 +41,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
@@ -52,6 +53,12 @@ export const GlobalStyle = createGlobalStyle`
 
   a:not([class]) {
     text-decoration-skip-ink: auto;
+  }
+
+  a:active,
+  a:hover,
+  a {
+    text-decoration: none;
   }
 
   img {
@@ -70,6 +77,10 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
   }
 
+  button{
+    border: none;
+  }
+
   :root{
     --light-blue: #9ec5fe;
     --blue: #0d6efd;
@@ -84,6 +95,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Source Sans Pro";
     background: var(--gray);
     margin: 0 20px;
+    color: var(--black);
   }
 `;
 
@@ -93,9 +105,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <Provider store={rootStore}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <GlobalStyle />
+      <Provider store={rootStore}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
