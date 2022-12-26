@@ -43,8 +43,8 @@
 
 ## Изученный статьи
 
-https://rahuulmiishra.medium.com/react-worst-practices-bdf924efe470
-https://betterprogramming.pub/8-basic-and-advanced-react-router-tips-6993ece8f57a
+- https://rahuulmiishra.medium.com/react-worst-practices-bdf924efe470
+- https://betterprogramming.pub/8-basic-and-advanced-react-router-tips-6993ece8f57a
 
 ### Структура проекта
 
@@ -66,6 +66,6 @@ https://betterprogramming.pub/8-basic-and-advanced-react-router-tips-6993ece8f57
 ├── .gitignore                       # Список исключённых файлов из Git
 ├── package.json                     # Список модулей и прочей информации
 ├── README.md                        # Документация приложения
-├── tsconfig.json                    # Параметры компилятора TypeScript
+└── tsconfig.json                    # Параметры компилятора TypeScript
 
 ```
