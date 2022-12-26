@@ -35,7 +35,6 @@
 
 - [redux](https://github.com/reduxjs/redux)
 - [react-router-dom](https://github.com/remix-run/react-router)
-- [react-error-boundary](https://github.com/bvaughn/react-error-boundary)
 - [styled-normalize](https://github.com/sergeysova/styled-normalize)
 - [styled-components](https://github.com/styled-components/styled-components)
 - [axios](https://github.com/axios/axios)
